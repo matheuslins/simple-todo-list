@@ -6,6 +6,6 @@ module.exports = function(server){
     server.use('/api', router)
 
     // TODO Routes
-    const todoSerice = require('../api/todo/todoService')
-    todoSerice.register(router, '/todos')
+    const todoService = require('../api/todo/todoService')
+    todoService.register(router, '/todos')
 }
