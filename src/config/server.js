@@ -2,6 +2,7 @@ const port = 3003
 const bodyParser = require('body-parser')
 const express = require('express')
 const server = express()
+const allowCors = require('./cors')
 
 // Midleweres
 
@@ -9,6 +10,7 @@ const server = express()
  submisao de formularios) para que o bodyParser faca o parser. */
 server.use(bodyParser.urlencoded({extended:true}))
 server.use(bodyParser.json())
+server.use(allowCors)
 
 server.listen(port, function() {
     console.log(`Bakend is running on port ${port}.`)
