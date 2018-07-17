@@ -15,6 +15,8 @@ export default class Todo extends Component {
         this.handleAdd = this.handleAdd.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleRemove = this.handleRemove.bind(this)
+        this.handleMarkAsDone = this.handleMarkAsDone.bind(this)
+        this.handleMarkAsPeding = this.handleMarkAsPeding.bind(this)
         this.refresh()
     }
     refresh(){
@@ -36,15 +38,29 @@ export default class Todo extends Component {
            do input*/
         this.setState({...this.state, description: event.target.value})
     }
+    handleMarkAsDone(todo){
+        /* o operador spread serve para pegar todos os atributos do objeto e
+         em seguida manipulalos em um novo objeto */
+        axios.put(`${URL}/${todo._id}`, {...todo, done: true})
+            .then(resp => this.refresh())
+    }
+    handleMarkAsPeding(todo){
+        axios.put(`${URL}/${todo._id}`, {...todo, done: false})
+            .then(resp => this.refresh())
+    }
     render(){
         return (
             <div>
                 <PageHeader name="Tarefas" small="Cadstro"/>
-                <TodoForm description={this.state.description}
+                <TodoForm
+                    description={this.state.description}
                     handleChange={this.handleChange}
                     handleAdd={this.handleAdd}/>
-                <TodoList list={this.state.list}
-                    handleRemove={this.handleRemove}/>
+                <TodoList
+                    list={this.state.list}
+                    handleRemove={this.handleRemove}
+                    handleMarkAsDone={this.handleMarkAsDone}
+                    handleMarkAsPeding={this.handleMarkAsPeding}/>
             </div>
         )
     }

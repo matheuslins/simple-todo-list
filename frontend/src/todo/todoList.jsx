@@ -6,10 +6,15 @@ export default props => {
     const renderRows = () => {
         const list = props.list || []
         return list.map(todo =>(
+            // A expressão '<condition> ? true' : false é um 'if else inline'
             <tr key={todo._id}>
-                <td>{todo.description}</td>
+                <td className={todo.done ? 'makedAsDone': ''}>{todo.description}</td>
                 <td>
-                    <IconButtom style="danger" icon="trash-o"
+                    <IconButtom style="warning" icon="undo" hide={!todo.done}
+                        onClick={() => props.handleMarkAsPeding(todo)}></IconButtom>
+                    <IconButtom style="success" icon="check" hide={todo.done}
+                        onClick={() => props.handleMarkAsDone(todo)}></IconButtom>
+                    <IconButtom style="danger" icon="trash-o" hide={!todo.done}
                         onClick={() => props.handleRemove(todo)}></IconButtom>
                 </td>
             </tr>
