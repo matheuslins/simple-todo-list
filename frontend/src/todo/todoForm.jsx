@@ -13,7 +13,6 @@ export default props => {
     }
     return (
         <div role="form" className="todoForm">
-            <p> Pres Enter to add an item or Enter + Shift to search</p>
             <Grid cols='9 9 10'>
                 <input
                     id="description"
@@ -23,6 +22,7 @@ export default props => {
                     onChange={props.handleChange}
                     value={props.description}>
                 </input>
+                <h6>You can press Enter to add an item or Enter + Shift to search</h6>
 
             </Grid>
             <Grid cols='3 3 2'>
