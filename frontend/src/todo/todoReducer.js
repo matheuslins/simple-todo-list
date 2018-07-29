@@ -1,10 +1,6 @@
 const INITIAL_STATE = {
-    description: 'Digite aqui sua atividade',
-    list: [{
-        _id: 1,
-        description: 'Atividade 1',
-        done: false
-    }]
+    description: '',
+    list: []
 }
 
 export default (state=INITIAL_STATE, action) => {
